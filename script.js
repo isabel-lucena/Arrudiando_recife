@@ -26,11 +26,15 @@ spinButton.addEventListener("click", () => {
   rotacaoTotal += voltas * 360 + Math.floor(Math.random() * 360);
   wheel.style.transform = `rotate(${rotacaoTotal}deg)`;
 
-  // quando a transição do CSS terminar, descobre qual fatia parou no ponteiro
-  wheel.addEventListener("transitionend", () => {
+  // Espera o tempo do giro (lido do próprio CSS) e mostra o resultado.
+  // Usar um timer em vez do evento "transitionend" garante que o botão
+  // nunca fica travado, mesmo se a animação estiver desligada no sistema.
+  const duracao = parseFloat(getComputedStyle(wheel).transitionDuration) * 1000 || 0;
+
+  setTimeout(() => {
     const anguloNoPonteiro = (360 - (rotacaoTotal % 360)) % 360;
     const sorteada = categorias[Math.floor(anguloNoPonteiro / 90)];
     result.textContent = `Deu ${sorteada.nome}: ${sorteada.frase}`;
     spinButton.disabled = false;
-  }, { once: true });
+  }, duracao + 100);
 });

@@ -29,6 +29,9 @@
 
 html { scroll-behavior: smooth; }
 
+/* ao clicar no menu, a seção para abaixo do header fixo, sem ficar escondida */
+section[id] { scroll-margin-top: 90px; }
+
 body {
   margin: 0;
   background: var(--creme);
@@ -233,8 +236,9 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 20px;
   left: 18%;
-  width: 52%;
-  aspect-ratio: 3 / 4.4;
+  width: 46%;
+  aspect-ratio: 1510 / 2576;     /* mesma proporção da arte do tabuleiro */
+  object-fit: cover;
   transform: rotate(9deg);
   border: 6px solid var(--roxo);
   box-shadow: 10px 14px 0 rgba(44, 28, 120, 0.15);
@@ -366,7 +370,13 @@ img { display: block; max-width: 100%; }
   grid-template-columns: 1fr 1fr;
   background: var(--creme-escuro);
 }
-.banner__img { min-height: 420px; font-size: 18px; }
+.banner__img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  max-height: 560px;
+  object-fit: cover;
+}
 .banner__text {
   align-self: center;
   padding: 60px 50px;
@@ -575,8 +585,8 @@ img { display: block; max-width: 100%; }
   padding: 16px;
   background: #e6dcb8;
 }
-.media__img { width: 100%; }
-.media__img--tall  { aspect-ratio: 3 / 4.4; }
+.media__img { width: 100%; object-fit: cover; }
+.media__img--tall  { aspect-ratio: 1510 / 2576; }
 .media__img--photo { aspect-ratio: 3 / 4.6; }
 .media__zoom {
   position: absolute;
@@ -683,4 +693,6 @@ img { display: block; max-width: 100%; }
 /* Respeita quem prefere menos animação */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  /* a roleta continua girando (mais rápido), porque é o usuário que pede o giro */
+  .wheel { transition: transform 1s ease-out !important; }
 }
