@@ -29,7 +29,6 @@
 
 html { scroll-behavior: smooth; }
 
-/* Ao clicar no menu, a seção para abaixo do header fixo */
 section[id] { scroll-margin-top: 90px; }
 
 body {
@@ -152,28 +151,25 @@ img { display: block; max-width: 100%; }
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  text-decoration: none;
 }
 .logo__img {
+  height: 52px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 .logo:hover .logo__img {
-  transform: rotate(12deg) scale(1.05);
-}
-
-.logo__placeholder {
-  display: block;
-  font: 800 26px/0.85 var(--fonte-titulo);
-  color: var(--roxo);
-  letter-spacing: 0.02em;
+  transform: scale(1.04);
 }
 
 .nav {
   display: flex;
   gap: 18px;
   margin-right: auto;
-  margin-left: 60px;
+  margin-left: 40px;
   font-size: 13px;
   font-weight: 500;
 }
@@ -312,6 +308,15 @@ img { display: block; max-width: 100%; }
 }
 .split__body p:not(.lead) { font-size: 13.5px; margin-bottom: 18px; }
 
+.sobre-jogo__img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin-top: 24px;
+  border-radius: 8px;
+  display: block;
+}
+
 .pills {
   display: flex;
   flex-wrap: wrap;
@@ -399,7 +404,6 @@ img { display: block; max-width: 100%; }
 
 .footnote { margin-top: 26px; font-size: 11px; }
 
-/* Container com perspectiva 3D */
 .flip-card {
   background-color: transparent;
   width: 100%;
@@ -407,7 +411,6 @@ img { display: block; max-width: 100%; }
   perspective: 1000px;
 }
 
-/* Elemento interno que gira */
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -416,13 +419,11 @@ img { display: block; max-width: 100%; }
   transform-style: preserve-3d;
 }
 
-/* Rotação ao passar o mouse ou focar */
 .flip-card:hover .flip-card-inner,
 .flip-card:focus-within .flip-card-inner {
   transform: rotateY(180deg);
 }
 
-/* Regras de ocultação de verso */
 .flip-card-front,
 .flip-card-back {
   position: absolute;
@@ -437,7 +438,6 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
-/* Frente (Imagem da Carta) */
 .flip-card-front {
   background-color: var(--creme-escuro);
   transform: rotateY(0deg);
@@ -450,7 +450,6 @@ img { display: block; max-width: 100%; }
   display: block;
 }
 
-/* Verso (Cor + Explicação) */
 .flip-card-back {
   transform: rotateY(180deg);
   padding: 24px 18px;
@@ -460,7 +459,6 @@ img { display: block; max-width: 100%; }
   color: var(--branco);
 }
 
-/* Cores de fundo das cartas */
 .card--green  { background: var(--verde); }
 .card--red    { background: var(--carta-vermelha); }
 .card--blue   { background: var(--azul); }
@@ -562,14 +560,6 @@ img { display: block; max-width: 100%; }
 .media__img { width: 100%; object-fit: cover; }
 .media__img--tall  { aspect-ratio: 1510 / 2576; }
 .media__img--photo { aspect-ratio: 3 / 4.6; }
-.media__zoom {
-  position: absolute;
-  right: 26px;
-  bottom: 28px;
-  padding: 6px 10px;
-  background: var(--branco);
-  font-size: 9px;
-}
 .media__body { padding-top: 10px; }
 .media__body > p:not(.lead):not(.eyebrow) {
   font-size: 13.5px;
@@ -597,34 +587,6 @@ img { display: block; max-width: 100%; }
 }
 .team dt { font-size: 10.5px; font-weight: 700; color: var(--roxo); }
 .team dd { font-size: 9.5px; opacity: 0.8; }
-
-/* ---------- Acordeão (<details>) ---------- */
-.accordion {
-  border-top: 1px solid var(--linha);
-  border-bottom: 1px solid var(--linha);
-  margin-top: 30px;
-}
-.accordion summary {
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 0;
-  font-weight: 700;
-  font-size: 12.5px;
-  cursor: pointer;
-  list-style: none;
-}
-.accordion summary::-webkit-details-marker { display: none; }
-.accordion summary::after { content: "+"; transition: transform 0.25s; }
-.accordion[open] summary::after { transform: rotate(45deg); }
-.accordion p {
-  padding-bottom: 20px;
-  font-size: 12px;
-  animation: abrir 0.3s ease;
-}
-@keyframes abrir {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: none; }
-}
 
 /* ---------- CTA ---------- */
 .cta {
@@ -692,17 +654,16 @@ img { display: block; max-width: 100%; }
   .footer__inner > div { margin: 0; }
 }
 
-/* Acessibilidade para quem prefere animação reduzida */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .wheel { transition: transform 1s ease-out !important; }
 }
 
-/* ================= MODO ESCURO (FUNDO ROXO) ================= */
+/* ================= MODO ESCURO ================= */
 body.dark-mode {
-  --creme: #2a2160;          /* Roxo das letras como fundo principal */
-  --creme-escuro: #1f1848;   /* Roxo mais fechado para seções alternadas e cards */
-  --roxo-texto: #f6f0dc;     /* Texto claro em tom creme para contraste */
+  --creme: #2a2160;
+  --creme-escuro: #1f1848;
+  --roxo-texto: #f6f0dc;
   --linha: rgba(255, 255, 255, 0.2);
 }
 
@@ -711,7 +672,6 @@ body.dark-mode .header {
   border-bottom: 1px solid var(--linha);
 }
 
-body.dark-mode .logo__placeholder,
 body.dark-mode .hero__title,
 body.dark-mode .title,
 body.dark-mode .lead,
