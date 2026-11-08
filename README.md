@@ -2,6 +2,9 @@
 
 Arrudiando Recife é um jogo de tabuleiro estratégico e divertido para 2 a 6 jogadores, ambientado nas ricas tradições, nos pontos turísticos e nos ícones culturais da capital pernambucana.
 
+## Conheça o nosso site
+https://isabel-lucena.github.io/Arrudiando_recife/#o-jogo
+
 ## A Experiência de Jogo
 ### Preparação
 Antes de dar a primeira jogada, cada participante escolhe seu personagem cultural (como o Chico Science, a Cangaceira, o Galo da Madrugada, o Caboclo de Lança, a La Ursa ou o Homem da Meia-Noite) e recebe seus recursos iniciais: 1 Comida, 1 Água e 1 Kit Médico. Na faixa de identificação do seu personagem, são colocados 3 Corações, representando a sua vida.
