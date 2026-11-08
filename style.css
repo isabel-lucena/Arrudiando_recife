@@ -29,7 +29,7 @@
 
 html { scroll-behavior: smooth; }
 
-/* ao clicar no menu, a seção para abaixo do header fixo, sem ficar escondida */
+/* Ao clicar no menu, a seção para abaixo do header fixo */
 section[id] { scroll-margin-top: 90px; }
 
 body {
@@ -134,25 +134,7 @@ img { display: block; max-width: 100%; }
   border-bottom: 1.5px solid currentColor;
 }
 
-/* ---------- Espaço reservado para imagens ---------- */
-.placeholder {
-  display: grid;
-  place-items: center;
-  text-align: center;
-  font: 700 14px var(--fonte-texto);
-  color: rgba(255, 255, 255, 0.9);
-  background:
-    repeating-linear-gradient(45deg, rgba(255,255,255,.07) 0 12px, transparent 12px 24px),
-    linear-gradient(135deg, var(--verde), var(--azul));
-}
-.placeholder small { font-weight: 400; opacity: 0.8; }
-.placeholder--soft {
-  background: rgba(44, 28, 120, 0.08);
-  color: var(--roxo);
-  border: 1.5px dashed var(--linha);
-}
-
-/* ---------- Header ---------- */
+/* ---------- Header & Logo ---------- */
 .header {
   position: sticky;
   top: 0;
@@ -165,6 +147,19 @@ img { display: block; max-width: 100%; }
   justify-content: space-between;
   gap: 32px;
   padding-block: 14px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo__img {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.logo:hover .logo__img {
+  transform: rotate(12deg) scale(1.05);
 }
 
 .logo__placeholder {
@@ -224,7 +219,7 @@ img { display: block; max-width: 100%; }
   position: relative;
   min-height: 560px;
 }
-.hero__art::before {          /* círculo fininho no fundo */
+.hero__art::before {
   content: "";
   position: absolute;
   inset: 40px 30px 80px 0;
@@ -237,7 +232,7 @@ img { display: block; max-width: 100%; }
   top: 20px;
   left: 18%;
   width: 46%;
-  aspect-ratio: 1510 / 2576;     /* mesma proporção da arte do tabuleiro */
+  aspect-ratio: 1510 / 2576;
   object-fit: cover;
   transform: rotate(9deg);
   border: 6px solid var(--roxo);
@@ -247,47 +242,14 @@ img { display: block; max-width: 100%; }
 
 .hero__chars {
   position: absolute;
-  bottom: 50px;
+  bottom: 40px;
   left: 4%;
   width: 92%;
-  height: 120px;
-  border-radius: 12px;
-}
-
-.hero__star {
-  position: absolute;
-  top: 70px;
-  left: 2%;
-  font-size: 54px;
-  color: var(--vermelho);
-  line-height: 1;
-}
-
-.hero__stamp {
-  position: absolute;
-  top: 0;
-  right: 2%;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1.6;
-  transform: rotate(9deg);
-}
-
-.hero__sticker {
-  position: absolute;
-  bottom: 190px;
-  right: 6%;
-  z-index: 2;
-  padding: 6px 12px;
-  background: var(--amarelo);
-  border: 2px solid var(--roxo);
-  font: 700 10px/1.2 var(--fonte-texto);
-  text-transform: uppercase;
-  text-align: center;
-  color: var(--roxo);
-  transform: rotate(-8deg);
+  height: auto;
+  max-height: 140px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .hero__art .caption {
@@ -325,10 +287,10 @@ img { display: block; max-width: 100%; }
 
 @keyframes rolar {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }   /* metade = 1 cópia do texto */
+  to   { transform: translateX(-50%); }
 }
 
-/* ---------- Seções ---------- */
+/* ---------- Seções Gerais ---------- */
 .section { padding: 90px 0; }
 .section--alt { background: var(--creme-escuro); }
 .section--purple { background: var(--roxo); color: var(--branco); }
@@ -342,7 +304,7 @@ img { display: block; max-width: 100%; }
 }
 .section__aside { font-size: 12px; text-align: right; }
 
-/* 01 / O jogo */
+/* ---------- 01 / O jogo ---------- */
 .split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -382,7 +344,7 @@ img { display: block; max-width: 100%; }
   padding: 60px 50px;
 }
 
-/* 02 / Como jogar */
+/* ---------- 02 / Como jogar ---------- */
 .notice {
   display: flex;
   gap: 30px;
@@ -409,7 +371,6 @@ img { display: block; max-width: 100%; }
   border-left: 1px solid var(--linha);
 }
 .step:first-child { padding-left: 0; border-left: 0; }
-.step__num { display: block; font-size: 9px; margin-bottom: 26px; }
 .step__icon {
   display: block;
   height: 30px;
@@ -429,93 +390,106 @@ img { display: block; max-width: 100%; }
 .step h3 { font-size: 15px; margin-bottom: 14px; color: var(--roxo); }
 .step p  { font-size: 11px; line-height: 1.75; }
 
-/* Acordeão (<details>) */
-.accordion {
-  border-top: 1px solid var(--linha);
-  border-bottom: 1px solid var(--linha);
-  margin-top: 30px;
-}
-.accordion summary {
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 0;
-  font-weight: 700;
-  font-size: 12.5px;
-  cursor: pointer;
-  list-style: none;
-}
-.accordion summary::-webkit-details-marker { display: none; }
-.accordion summary::after { content: "+"; transition: transform 0.25s; }
-.accordion[open] summary::after { transform: rotate(45deg); }
-.accordion p {
-  padding-bottom: 20px;
-  font-size: 12px;
-  animation: abrir 0.3s ease;
-}
-@keyframes abrir {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* 03 / Cartas */
+/* ---------- 03 / Cartas (Flip 3D) ---------- */
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
-.card {
+
+.footnote { margin-top: 26px; font-size: 11px; }
+
+/* Container com perspectiva 3D */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 380px;
+  perspective: 1000px;
+}
+
+/* Elemento interno que gira */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Rotação ao passar o mouse ou focar */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Regras de ocultação de verso */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Frente (Imagem da Carta) */
+.flip-card-front {
+  background-color: var(--creme-escuro);
+  transform: rotateY(0deg);
+}
+
+.flip-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Verso (Cor + Explicação) */
+.flip-card-back {
+  transform: rotateY(180deg);
+  padding: 24px 18px;
   display: flex;
   flex-direction: column;
-  min-height: 380px;
-  padding: 26px 18px 22px;
+  justify-content: flex-start;
   color: var(--branco);
-  border-radius: 4px;
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s cubic-bezier(.3,1.6,.5,1), box-shadow 0.3s;
 }
-.card:hover {
-  transform: translateY(-12px) rotate(-3deg);
-  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
-}
-.card:nth-child(even):hover { transform: translateY(-12px) rotate(3deg); }
 
+/* Cores de fundo das cartas */
 .card--green  { background: var(--verde); }
 .card--red    { background: var(--carta-vermelha); }
 .card--blue   { background: var(--azul); }
 .card--yellow { background: var(--amarelo); color: var(--roxo); }
 
-.card__label {
-  font-size: 9px;
+.flip-card-back .card__label {
+  font-size: 10px;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.9;
 }
-.card__icon {
-  display: grid;
-  place-items: center;
-  height: 140px;
-  font-size: 72px;
-  line-height: 1;
-}
-.card--yellow .card__icon { color: var(--roxo); }
-.card__icon--square::before {
-  content: "";
-  width: 54px; height: 54px;
-  border: 8px solid var(--branco);
-  outline: 4px solid var(--branco);
-  outline-offset: 6px;
-}
-.card h3 {
-  margin-top: auto;
-  font: 800 25px/1.05 var(--fonte-titulo);
-  margin-bottom: 8px;
-}
-.card p { font-size: 11px; line-height: 1.5; margin-bottom: 22px; }
-.card__link { font-size: 9px; font-weight: 700; }
 
-.footnote { margin-top: 26px; font-size: 11px; }
+.flip-card-back h3 {
+  font: 800 24px/1.1 var(--fonte-titulo);
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
 
-/* 04 / Roleta */
+.flip-card-back p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.card--yellow .card__label {
+  color: var(--roxo);
+}
+
+/* ---------- 04 / Roleta ---------- */
 .roleta {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -573,7 +547,7 @@ img { display: block; max-width: 100%; }
 }
 .roleta__result { font-size: 12px; text-align: center; min-height: 1.5em; }
 
-/* 05 e 06 / Imagem + texto */
+/* ---------- 05 e 06 / Imagem + texto ---------- */
 .media {
   display: grid;
   grid-template-columns: 0.75fr 1fr;
@@ -624,6 +598,34 @@ img { display: block; max-width: 100%; }
 .team dt { font-size: 10.5px; font-weight: 700; color: var(--roxo); }
 .team dd { font-size: 9.5px; opacity: 0.8; }
 
+/* ---------- Acordeão (<details>) ---------- */
+.accordion {
+  border-top: 1px solid var(--linha);
+  border-bottom: 1px solid var(--linha);
+  margin-top: 30px;
+}
+.accordion summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 0;
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+  list-style: none;
+}
+.accordion summary::-webkit-details-marker { display: none; }
+.accordion summary::after { content: "+"; transition: transform 0.25s; }
+.accordion[open] summary::after { transform: rotate(45deg); }
+.accordion p {
+  padding-bottom: 20px;
+  font-size: 12px;
+  animation: abrir 0.3s ease;
+}
+@keyframes abrir {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
 /* ---------- CTA ---------- */
 .cta {
   position: relative;
@@ -660,7 +662,7 @@ img { display: block; max-width: 100%; }
 .footer__top { font-size: 11px; }
 .footer__top:hover { color: var(--vermelho); }
 
-/* ---------- Responsivo (celular / tablet) ---------- */
+/* ---------- Responsividade ---------- */
 @media (max-width: 900px) {
   .nav { display: none; }
 
@@ -690,9 +692,46 @@ img { display: block; max-width: 100%; }
   .footer__inner > div { margin: 0; }
 }
 
-/* Respeita quem prefere menos animação */
+/* Acessibilidade para quem prefere animação reduzida */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  /* a roleta continua girando (mais rápido), porque é o usuário que pede o giro */
   .wheel { transition: transform 1s ease-out !important; }
+}
+
+/* ================= MODO ESCURO (FUNDO ROXO) ================= */
+body.dark-mode {
+  --creme: #2a2160;          /* Roxo das letras como fundo principal */
+  --creme-escuro: #1f1848;   /* Roxo mais fechado para seções alternadas e cards */
+  --roxo-texto: #f6f0dc;     /* Texto claro em tom creme para contraste */
+  --linha: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .header {
+  background: var(--creme);
+  border-bottom: 1px solid var(--linha);
+}
+
+body.dark-mode .logo__placeholder,
+body.dark-mode .hero__title,
+body.dark-mode .title,
+body.dark-mode .lead,
+body.dark-mode .step h3,
+body.dark-mode .feature h3,
+body.dark-mode .team__title,
+body.dark-mode .team dt {
+  color: #fffdf6;
+}
+
+body.dark-mode .btn--outline {
+  border-color: #f6f0dc;
+  color: #f6f0dc;
+}
+
+body.dark-mode .btn--outline:hover {
+  background: #f6f0dc;
+  color: #2a2160;
+}
+
+body.dark-mode .hero__board {
+  border-color: #ebb92d;
 }
