@@ -155,15 +155,15 @@ img { display: block; max-width: 100%; }
 }
 
 .logo__img {
-  height: 42px;
+  height: 28px;
   width: auto;
-  max-width: 180px;
+  max-width: 140px;
   object-fit: contain;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 .logo:hover .logo__img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .nav {
@@ -622,10 +622,6 @@ img { display: block; max-width: 100%; }
   font-size: 11px;
 }
 .footer__inner > div { margin-right: auto; margin-left: 80px; }
-.footer .logo__img {
-  height: 36px;
-  max-width: 150px;
-}
 .footer__top { font-size: 11px; }
 .footer__top:hover { color: var(--vermelho); }
 
