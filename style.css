@@ -108,7 +108,7 @@ img { display: block; max-width: 100%; }
   border: 1px solid transparent;
   border-radius: 2px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
 }
 .btn:hover { transform: translateY(-2px); }
 
@@ -160,7 +160,7 @@ img { display: block; max-width: 100%; }
   max-width: 140px;
   object-fit: contain;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 .logo:hover .logo__img {
   transform: scale(1.05);
@@ -266,6 +266,7 @@ img { display: block; max-width: 100%; }
   background: var(--roxo);
   color: var(--branco);
   padding: 16px 0;
+  transition: background 0.3s ease;
 }
 .marquee__track {
   display: flex;
@@ -402,8 +403,6 @@ img { display: block; max-width: 100%; }
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
-
-.footnote { margin-top: 26px; font-size: 11px; }
 
 .flip-card {
   background-color: transparent;
@@ -602,15 +601,6 @@ img { display: block; max-width: 100%; }
   font: 800 clamp(38px, 4.6vw, 60px)/1 var(--fonte-titulo);
   margin-bottom: 36px;
 }
-.cta__deco {
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-  font-size: 110px;
-  letter-spacing: 20px;
-  opacity: 0.15;
-  pointer-events: none;
-}
 
 /* ---------- Footer ---------- */
 .footer { padding: 34px 0; }
@@ -660,17 +650,26 @@ img { display: block; max-width: 100%; }
   .wheel { transition: transform 1s ease-out !important; }
 }
 
-/* ================= MODO ESCURO ================= */
+/* =========================================================
+   MODO ESCURO — REFORMULADO PARA ALTO CONTRASTE E LEGIBILIDADE
+   ========================================================= */
 body.dark-mode {
-  --creme: #2a2160;
-  --creme-escuro: #1f1848;
-  --roxo-texto: #f6f0dc;
-  --linha: rgba(255, 255, 255, 0.2);
+  /* Fundo noturno ultra-escuro para contrastar perfeitamente com os roxos do jogo */
+  --creme: #110c24;          /* Fundo principal bem escuro (grafite-arroxado) */
+  --creme-escuro: #1b1535;   /* Tom para seções alternadas e cards */
+  --roxo: #9b82ff;           /* Roxo lavanda claro para títulos se destacarem */
+  --roxo-texto: #ece6ff;     /* Texto principal em creme/lavanda claríssimo */
+  --linha: rgba(255, 255, 255, 0.15);
 }
 
 body.dark-mode .header {
   background: var(--creme);
   border-bottom: 1px solid var(--linha);
+}
+
+/* Garante contraste perfeito da logo (letras roxas escuras) no fundo escuro */
+body.dark-mode .logo__img {
+  filter: drop-shadow(0 0 2px #ffffff) drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
 }
 
 body.dark-mode .hero__title,
@@ -680,19 +679,46 @@ body.dark-mode .step h3,
 body.dark-mode .feature h3,
 body.dark-mode .team__title,
 body.dark-mode .team dt {
-  color: #fffdf6;
+  color: #ffffff;
 }
 
+/* Botão "Conheça o Jogo" no modo escuro fica em tom amarelo destacado */
+body.dark-mode .btn--primary {
+  background: var(--amarelo);
+  color: #110c24;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .btn--primary:hover {
+  background: #fbd65c;
+}
+
+/* Botões com borda (outline) */
 body.dark-mode .btn--outline {
   border-color: #f6f0dc;
   color: #f6f0dc;
 }
-
 body.dark-mode .btn--outline:hover {
   background: #f6f0dc;
-  color: #2a2160;
+  color: #110c24;
+}
+
+/* Marquee (faixa rodante) no modo escuro usa tom roxo vibrante e distinto */
+body.dark-mode .marquee {
+  background: #2b1d60;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fffdf6;
+}
+
+/* Seção roleta no modo escuro */
+body.dark-mode .section--purple {
+  background: #191238;
 }
 
 body.dark-mode .hero__board {
   border-color: #ebb92d;
+}
+
+body.dark-mode .media__frame {
+  background: #261f42;
 }
