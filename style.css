@@ -39,6 +39,15 @@ body {
   font-size: 15px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  
+  /* Flexbox para garantir que o rodapé fica sempre colado no final */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
@@ -564,9 +573,41 @@ img { display: block; max-width: 100%; }
 .media__img--tall  { aspect-ratio: 1510 / 2576; }
 .media__img--photo { aspect-ratio: 3 / 4.6; }
 .media__body { padding-top: 10px; }
-.media__body > p:not(.lead):not(.eyebrow) {
+.media__body > p:not(.lead):not(.eyebrow):not(.ampulheta-link) {
   font-size: 13.5px;
   margin: 24px 0;
+}
+
+/* Conexão das Mecânicas no Tabuleiro */
+.mecanicas-head {
+  margin-top: 32px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--linha);
+}
+
+.mecanicas-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--vermelho);
+}
+
+.ampulheta-link {
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ampulheta-link a {
+  color: var(--vermelho);
+  font-weight: 700;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.ampulheta-link a:hover {
+  opacity: 0.8;
 }
 
 .feature {
@@ -605,8 +646,15 @@ img { display: block; max-width: 100%; }
   margin-bottom: 36px;
 }
 
-/* ---------- Footer ---------- */
-.footer { padding: 34px 0; }
+/* ---------- Footer (Rodapé Tradicional) ---------- */
+.footer {
+  width: 100%;
+  padding: 30px 0;
+  background: var(--creme-escuro);
+  border-top: 2px solid var(--linha);
+  margin-top: auto;
+}
+
 .footer__inner {
   display: flex;
   align-items: center;
@@ -614,9 +662,21 @@ img { display: block; max-width: 100%; }
   gap: 30px;
   font-size: 11px;
 }
-.footer__inner > div { margin-right: auto; margin-left: 80px; }
-.footer__top { font-size: 11px; }
-.footer__top:hover { color: var(--vermelho); }
+
+.footer__inner > div {
+  margin-right: auto;
+  margin-left: 40px;
+}
+
+.footer__top {
+  font-size: 11px;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.footer__top:hover {
+  color: var(--vermelho);
+}
 
 /* ---------- Responsividade ---------- */
 @media (max-width: 900px) {
@@ -718,4 +778,21 @@ body.dark-mode .hero__board {
 
 body.dark-mode .media__frame {
   background: #261f42;
+}
+
+body.dark-mode .mecanicas-title {
+  color: var(--amarelo);
+}
+
+body.dark-mode .ampulheta-link a {
+  color: var(--amarelo);
+}
+
+body.dark-mode .footer {
+  background: #0a0717;
+  border-top: 2px solid var(--linha);
+}
+
+body.dark-mode .footer__top:hover {
+  color: var(--amarelo);
 }
